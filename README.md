@@ -7,7 +7,7 @@ A real-time cryptocurrency trades dashboard built with Angular (frontend) and No
 ## 📁 Project Structure
 
 - `frontend/` - Angular application displaying trade data in a table.
-- `backend/` - Express server serving mock trade data via REST API.
+- `backend/` - Express server serving mock trade data via API.
 
 ---
 
