@@ -1,0 +1,106 @@
+<!-- Header section showing the dashboard title -->
+<header class="dashboard-header">
+  <h1 class="dashboard-title">
+    BTC/USDT Trades Dashboard
+  </h1>
+</header>
+
+<!-- Main container for dashboard content -->
+<div class="dashboard-wrapper">
+  
+  <!-- Controls section: for filtering and sorting trades -->
+  <section class="dashboard-controls">
+
+    <!-- Dropdown for filtering trades by type: All / Buy / Sell -->
+    <mat-form-field appearance="outline" class="control-field">
+      <mat-label>Filter by Type</mat-label>
+      <mat-select [(ngModel)]="filter" (selectionChange)="apply()">
+        <mat-option value="ALL">All</mat-option>
+
+        <mat-option value="BUY">
+          <!-- Green icon for Buy -->
+          <mat-icon style="vertical-align: middle; color: #4caf50;">trending_up</mat-icon>
+          <span style="margin-left: 6px;">Buy</span>
+        </mat-option>
+
+        <mat-option value="SELL">
+          <!-- Red icon for Sell -->
+          <mat-icon style="vertical-align: middle; color: #f44336;">trending_down</mat-icon>
+          <span style="margin-left: 6px;">Sell</span>
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- Dropdown for sorting trades by timestamp or price -->
+    <mat-form-field appearance="outline" class="control-field">
+      <mat-label>Sort by</mat-label>
+      <mat-select [(ngModel)]="sortField" (selectionChange)="apply()">
+
+        <mat-option value="timestamp">
+          <!-- Icon for sorting by time -->
+          <mat-icon style="vertical-align: middle;">schedule</mat-icon>
+          <span style="margin-left: 6px;">Time</span>
+        </mat-option>
+
+        <mat-option value="price">
+          <!-- Icon for sorting by price -->
+          <mat-icon style="vertical-align: middle;">attach_money</mat-icon>
+          <span style="margin-left: 6px;">Price</span>
+        </mat-option>
+
+      </mat-select>
+    </mat-form-field>
+  </section>
+
+  <!-- Trade table displaying the trades -->
+  <div class="table-wrapper mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" class="full-width-table">
+
+      <!-- Trade ID column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>Trade ID</th>
+        <td mat-cell *matCellDef="let trade">{{ trade.id }}</td>
+      </ng-container>
+
+      <!-- Price column -->
+      <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef>Price (USD)</th>
+        <td mat-cell *matCellDef="let trade">${{ trade.price }}</td>
+      </ng-container>
+
+      <!-- Volume column -->
+      <ng-container matColumnDef="volume">
+        <th mat-header-cell *matHeaderCellDef>Volume</th>
+        <td mat-cell *matCellDef="let trade">{{ trade.volume }}</td>
+      </ng-container>
+
+      <!-- Timestamp column -->
+      <ng-container matColumnDef="timestamp">
+        <th mat-header-cell *matHeaderCellDef>Time</th>
+        <!-- Format timestamp using Angular date pipe -->
+        <td mat-cell *matCellDef="let trade">{{ trade.timestamp | date: 'short' }}</td>
+      </ng-container>
+
+      <!-- Trade type column (Buy/Sell) -->
+      <ng-container matColumnDef="side">
+        <th mat-header-cell *matHeaderCellDef>Type</th>
+        <td mat-cell *matCellDef="let trade">
+          <!-- Apply badge class dynamically for styling -->
+          <span class="badge" [ngClass]="trade.side.toLowerCase()">{{ trade.side }}</span>
+        </td>
+      </ng-container>
+
+      <!-- Table header and rows -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </table>
+
+    <!-- Pagination controls at the bottom of the table -->
+    <mat-paginator 
+      [pageSize]="10" 
+      [pageSizeOptions]="[5, 10, 20]" 
+      showFirstLastButtons>
+    </mat-paginator>
+  </div>
+</div>

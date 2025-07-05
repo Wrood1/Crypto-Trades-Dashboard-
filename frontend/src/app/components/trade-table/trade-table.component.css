@@ -1,0 +1,59 @@
+.dashboard-title {
+  font-size: 2.5rem; /* Large title size */
+  font-weight: 700;  /* Bold text */
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center;     /* Center vertically */
+  gap: 10px;               /* Space between elements inside */
+  background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 6%, rgba(72, 39, 136, 1) 38%, rgba(110, 57, 145, 1) 65%);
+  -webkit-background-clip: text;       /* Clip background to text shape */
+  -webkit-text-fill-color: transparent;/* Make text transparent to show gradient */
+}
+
+.dashboard-wrapper {
+  display: flex;
+  flex-direction: column; /* Stack children vertically */
+  gap: 24px;              /* Space between children */
+  padding: 0 2rem;        /* Side padding */
+  margin-top: 1rem;       /* Top spacing */
+}
+
+.dashboard-controls {
+  display: flex;
+  flex-wrap: wrap;           /* Wrap controls if not enough space */
+  justify-content: center;   /* Center items */
+  gap: 30px;                 /* Space between controls */
+  margin-top: 100px;         /* Push controls lower down */
+}
+
+.control-field {
+  min-width: 220px; /* Ensure control fields have enough width */
+}
+
+.table-wrapper {
+  background-color: #121212;             /* Dark background for contrast */
+  border-radius: 12px;                   /* Rounded corners */
+  padding: 16px;                         /* Inner spacing */
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);/* Drop shadow */
+}
+
+.full-width-table {
+  width: 100%; /* Make table span full width */
+}
+
+.badge {
+  padding: 4px 12px;        /* Padding inside badge */
+  border-radius: 12px;      /* Rounded badge shape */
+  font-size: 13px;          /* Smaller text */
+  color: white;             /* White text */
+  display: inline-block;
+  text-transform: uppercase;/* Make text uppercase */
+}
+
+.badge.buy {
+  background-color: #4caf50; /* Green for buy */
+}
+
+.badge.sell {
+  background-color: #f44336; /* Red for sell */
+}
